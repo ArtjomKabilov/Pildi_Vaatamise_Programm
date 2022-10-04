@@ -19,11 +19,17 @@ namespace Pildi_Vaatamise_Programm
         Button btn, btn2, btn3;
         CheckBox cb;
         TableLayoutPanel tlp;
+        
         public Form1()
         {
 
             this.Size = new Size(790, 440);
             this.Name = "Pildi vaatamine";
+            cb = new CheckBox
+            {
+                Text = "Venitada"
+            };
+            cb.CheckedChanged += Cb_CheckedChanged; ;
             tlp = new TableLayoutPanel()
             {
                 Dock = System.Windows.Forms.DockStyle.Fill,
@@ -38,11 +44,11 @@ namespace Pildi_Vaatamise_Programm
             tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle
                 (System.Windows.Forms.SizeType.Percent, 10F));
             tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle
-                (System.Windows.Forms.SizeType.Percent, 90F));
+                (System.Windows.Forms.SizeType.Percent, 40F));
             tlp.RowStyles.Add(new System.Windows.Forms.RowStyle
-                (System.Windows.Forms.SizeType.Absolute, 85F));
+                (System.Windows.Forms.SizeType.Absolute, 350F));
             tlp.RowStyles.Add(new System.Windows.Forms.RowStyle
-                (System.Windows.Forms.SizeType.Absolute, 15F));
+                (System.Windows.Forms.SizeType.Absolute, 40F));
             pb = new PictureBox()
             {
                 Size = new Size(382, 300),
@@ -94,6 +100,7 @@ namespace Pildi_Vaatamise_Programm
             };
             flowLayoutPanel.Controls.AddRange(buttons);
             tlp.Controls.Add(flowLayoutPanel, 1, 1);
+            tlp.Controls.Add(cb, 1, 0);
             /*tlp.Controls.Add(pb, 0, 0);
              this.Controls.Add(btn);
              this.Controls.Add(btn2);
@@ -101,6 +108,18 @@ namespace Pildi_Vaatamise_Programm
              this.Controls.Add(pb);*/
 
             this.Controls.Add(tlp);
+        }
+
+        private void Cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb.Checked)
+            {
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
 
         private void Pb_DoubleClick(object sender, EventArgs e)

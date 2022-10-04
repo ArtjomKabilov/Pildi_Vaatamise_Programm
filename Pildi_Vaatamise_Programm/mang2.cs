@@ -17,11 +17,11 @@ namespace Pildi_Vaatamise_Programm
         TableLayoutPanel tlp;
         Label firstClicked = null;
         Label secondClicked = null;
-        Timer tm;
+        Timer taimer;
         List<string> icons = new List<string>()
         {
-            "!", "!", "N", "N", ",", ",", "k", "k",
-            "b", "b", "v", "v", "w", "w", "z", "z"
+            "a", "a", "B", "B", "j", "j", "K", "K",
+            "d", "d", "X", "X", "W", "W", ".", "."
         };
         public mang2()
         {
@@ -29,7 +29,7 @@ namespace Pildi_Vaatamise_Programm
             MaximizeBox = false;
             tlp = new TableLayoutPanel
             {
-                BackColor = ColorTranslator.FromHtml("#3333FF"),
+                BackColor = Color.LightGreen,
                 Dock = DockStyle.Fill,
                 CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset,
             };
@@ -47,7 +47,7 @@ namespace Pildi_Vaatamise_Programm
                 {
                     Label lb = new Label
                     {
-                        BackColor = ColorTranslator.FromHtml("#3333FF"),
+                        BackColor = Color.LightGreen,
                         AutoSize = false,
                         Dock = DockStyle.Fill,
                         TextAlign = ContentAlignment.MiddleCenter,
@@ -59,16 +59,16 @@ namespace Pildi_Vaatamise_Programm
                     tlp.Controls.Add(lb, i, j);
                 }
             }
-            tm = new Timer();
-            tm.Interval = 750;
-            tm.Tick += Tm_Tick;
+            taimer = new Timer();
+            taimer.Interval = 750;
+            taimer.Tick += Tm_Tick;
             Controls.AddRange(new Control[] { tlp, });
             AssignIconsToSquares();
         }
 
         private void Tm_Tick(object sender, EventArgs e)
         {
-            tm.Stop();
+            taimer.Stop();
             firstClicked.ForeColor = firstClicked.BackColor;
             secondClicked.ForeColor = secondClicked.BackColor;
             firstClicked = null;
@@ -91,7 +91,7 @@ namespace Pildi_Vaatamise_Programm
         }
         private void label1_Click(object sender, EventArgs e)
         {
-            if (tm.Enabled == true)
+            if (taimer.Enabled == true)
                 return;
 
             Label clickedLabel = sender as Label;
@@ -120,7 +120,7 @@ namespace Pildi_Vaatamise_Programm
                     return;
                 }
 
-                tm.Start();
+                taimer.Start();
             }
         }
         private void CheckForWinner()
@@ -136,9 +136,9 @@ namespace Pildi_Vaatamise_Programm
                 }
             }
 
-            MessageBox.Show("You matched all the icons!", "Congratulations");
+            MessageBox.Show("Sa sobitasid kõik ikoonid!", "Palju õnne");
             Close();
-        }
+        
         }
     }
 }

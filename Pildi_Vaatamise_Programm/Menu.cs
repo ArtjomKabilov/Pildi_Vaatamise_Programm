@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,15 @@ namespace Pildi_Vaatamise_Programm
     public partial class Menu : Form
     {
         Button btn1, btn2, btn3;
+
+
         public Menu()
         {
             this.Size = new Size(400, 400);
             this.BackColor = Color.LightYellow;
+
+
+
             btn1 = new Button()
             {
                 Text = "Pildi vaatamise programm",
@@ -43,6 +49,9 @@ namespace Pildi_Vaatamise_Programm
 
 
             };
+    
+
+
             btn1.Click += Btn1_Click;
             btn2.Click += Btn2_Click;
             btn3.Click += Btn3_Click;
@@ -50,6 +59,8 @@ namespace Pildi_Vaatamise_Programm
             this.Controls.Add(btn2);
             this.Controls.Add(btn3);
         }
+
+        
 
         private void Btn3_Click(object sender, EventArgs e)
         {

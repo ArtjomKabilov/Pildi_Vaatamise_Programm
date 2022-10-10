@@ -19,8 +19,8 @@ namespace Pildi_Vaatamise_Programm
     {
         TextBox tb1, tb2;
         Label lbl1, lbl2;
-        Button btn;
-        RadioButton rb;
+        Button btn,btn2;
+        CheckBox rb;
         public login()
         {
             this.Size = new Size(500, 400);
@@ -49,18 +49,32 @@ namespace Pildi_Vaatamise_Programm
                 Size = new Size(100,40),
                 Text = "Logi Sisse"
             };
-            rb = new RadioButton() { Location = new Point(), Text = "Registreerima"};
+            btn2 = new Button()
+            {
+                Location = new Point(200, 300),
+                Size = new Size(100, 40),
+                Text = "Registreerima"
+            };
             this.Controls.Add(tb1);
             this.Controls.Add(tb2);
             this.Controls.Add(btn);
-            this.Controls.Add(rb);
+            this.Controls.Add(btn2);
             this.Controls.Add(lbl1);
             this.Controls.Add(lbl2);
 
-            btn.Click += Btn_Click;
 
+
+            btn.Click += Btn_Click;
+            btn2.Click += Btn2_Click;
         }
-        
+
+        private void Btn2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            registration mp2 = new registration();
+            mp2.Show();
+        }
+
         public int I;
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane.TTHK\source\repos\ArtemKabilov2_TARpv20\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database1.mdf;Integrated Security=True";
 

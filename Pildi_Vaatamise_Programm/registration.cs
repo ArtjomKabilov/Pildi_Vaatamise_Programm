@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Button = System.Windows.Forms.Button;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace Pildi_Vaatamise_Programm
 {
@@ -21,48 +24,69 @@ namespace Pildi_Vaatamise_Programm
             this.Size = new Size(500, 400);
             tb1 = new TextBox()
             {
-                Location = new Point(200, 100)
+                Location = new Point(200, 50)
             };
             tb2 = new TextBox()
             {
-                Location = new Point(200, 50),
+                Location = new Point(200, 100),
             };
             tb3 = new TextBox()
             {
-                Location = new Point(200, 100),
+                Location = new Point(200, 150),
             };
             tb4 = new TextBox()
             {
-                Location = new Point(200, 150),
+                Location = new Point(200, 200),
             };
             tb5 = new TextBox()
             {
-                Location = new Point(200, 200),
-                
+                Location = new Point(200, 250),
+                PasswordChar = '•',
+
             };
             lbl1 = new Label()
             {
-                Location = new Point(170, 100),
-                Text = "login"
+                Location = new Point(150, 50),
+                Text = "Nimi"
             };
             lbl2 = new Label()
             {
-                Location = new Point(145, 150),
-                Text = "Password"
+                Location = new Point(150, 100),
+                Text = "E-mail"
+            };
+            lbl3 = new Label()
+            {
+                 Location = new Point(150, 150),
+                 Text = "Sugu"
+            };
+            lbl4 = new Label()
+            {
+                Location = new Point(150, 200),
+                Text = "Vanus"
+            };
+            lbl5 = new Label()
+            {
+                Location = new Point(150, 250),
+                Text = "parool"
             };
             btn = new Button()
             {
-                Location = new Point(200, 260),
-                Size = new Size(100, 40)
+                Location = new Point(200, 300),
+                Size = new Size(100, 40),
+                Text = "Registreerima"
             };
             this.Controls.Add(tb1);
             this.Controls.Add(tb2);
+            this.Controls.Add(tb3);
+            this.Controls.Add(tb4);
+            this.Controls.Add(tb5);
             this.Controls.Add(btn);
             this.Controls.Add(lbl1);
             this.Controls.Add(lbl2);
             this.Controls.Add(lbl3);
             this.Controls.Add(lbl4);
             this.Controls.Add(lbl5);
+
 
             btn.Click += Btn_Click;
 
@@ -77,23 +101,46 @@ namespace Pildi_Vaatamise_Programm
             SqlConnection connection = new SqlConnection(connectionString);
             I = 0;
             connection.Open();
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from people where nimi = '" + tb1.Text + "'and password= '" + tb2.Text + "'";
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            I = Convert.ToInt32(dt.Rows.Count.ToString());
-            if (I == 0)
+           
+            if (tb1.Text.Length == 0)
             {
-                MessageBox.Show("Seda kasutajanime või parooli pole olemas");
+                MessageBox.Show("Sa jätsid tühjad read");
+
+            }
+            else if (tb2.Text.Length == 0)
+            {
+                MessageBox.Show("Sa jätsid tühjad read");
+
+            }
+            else if (tb3.Text.Length == 0)
+            {
+                MessageBox.Show("Sa jätsid tühjad read");
+
+            }
+            else if (tb4.Text.Length == 0)
+            {
+                MessageBox.Show("Sa jätsid tühjad read");
+
+            }
+            else if (tb5.Text.Length == 0)
+            {
+                MessageBox.Show("Sa jätsid tühjad read");
+
             }
             else
             {
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT people(nimi,email,sugu,vanus,password) VALUES ('" + tb1.Text + "','" + tb2.Text + "', '" + tb3.Text + "', '" + tb4.Text + "','" + tb5.Text + "');";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                I = Convert.ToInt32(dt.Rows.Count.ToString());
                 this.Hide();
-                Menu mp = new Menu();
+                login mp = new login();
                 mp.Show();
             }
+           
             connection.Close();
 
 

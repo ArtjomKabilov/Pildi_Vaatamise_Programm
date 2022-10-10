@@ -13,7 +13,7 @@ namespace Pildi_Vaatamise_Programm
 {
     public partial class Menu : Form
     {
-        Button btn1, btn2, btn3;
+        Button btn1, btn2, btn3,btn4;
 
 
         public Menu()
@@ -49,18 +49,38 @@ namespace Pildi_Vaatamise_Programm
 
 
             };
-    
+            btn4 = new Button()
+            {
+                Text = "Logi välja",
+                Location = new Point(285, 20),
+                Size = new Size(100, 50),
+                BackColor = Color.LightGreen
+
+
+            };
+
 
 
             btn1.Click += Btn1_Click;
             btn2.Click += Btn2_Click;
             btn3.Click += Btn3_Click;
+            btn3.Click += Btn3_Click1;
             this.Controls.Add(btn1);
             this.Controls.Add(btn2);
             this.Controls.Add(btn3);
+            this.Controls.Add(btn4);
+
+
+
+
         }
 
-        
+        private void Btn3_Click1(object sender, EventArgs e)
+        {
+            login mang3 = new login();
+            mang3.ShowDialog();
+            this.Hide();
+        }
 
         private void Btn3_Click(object sender, EventArgs e)
         {

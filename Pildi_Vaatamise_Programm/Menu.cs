@@ -52,7 +52,7 @@ namespace Pildi_Vaatamise_Programm
             btn4 = new Button()
             {
                 Text = "Logi välja",
-                Location = new Point(285, 20),
+                Location = new Point(278, 20),
                 Size = new Size(100, 50),
                 BackColor = Color.LightGreen
 
@@ -64,7 +64,7 @@ namespace Pildi_Vaatamise_Programm
             btn1.Click += Btn1_Click;
             btn2.Click += Btn2_Click;
             btn3.Click += Btn3_Click;
-            btn3.Click += Btn3_Click1;
+            btn4.Click += Btn4_Click1;
             this.Controls.Add(btn1);
             this.Controls.Add(btn2);
             this.Controls.Add(btn3);
@@ -75,11 +75,11 @@ namespace Pildi_Vaatamise_Programm
 
         }
 
-        private void Btn3_Click1(object sender, EventArgs e)
+        private void Btn4_Click1(object sender, EventArgs e)
         {
             login mang3 = new login();
             mang3.ShowDialog();
-            this.Hide();
+            this.Close();
         }
 
         private void Btn3_Click(object sender, EventArgs e)

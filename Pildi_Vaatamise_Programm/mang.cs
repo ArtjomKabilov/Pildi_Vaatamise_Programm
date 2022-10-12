@@ -26,7 +26,7 @@ namespace Pildi_Vaatamise_Programm
         int aega_jäänud;
         Timer timer;
         Label lb;
-        Button start;
+        Button start, btn;
 
         public mang()
         {
@@ -69,21 +69,33 @@ namespace Pildi_Vaatamise_Programm
                 AutoSize = false,
                 BorderStyle = BorderStyle.FixedSingle,
                 Size = new Size(200, 30),
+                BackColor = Color.White
             };
             Label label = new Label
             {
                 Font = new Font(Font.FontFamily, (float)15.75),
                 Text = "Aega jäänud",
                 AutoSize = true,
+               
             };
             start = new Button
             {
                 Text = "Alustage viktoriini",
                 Font = new Font(Font.FontFamily, 14),
                 AutoSize = true,
-                TabIndex = 0
-                
+                TabIndex = 0,
+                BackColor = Color.White
+
             };
+            btn = new Button()
+            {
+                Text = "Uus formi värv",
+                AutoSize = true,
+                TabIndex = 0,
+                BackColor = Color.White
+
+            };
+            btn.Click += Btn_Click;
             start.Click += Start_Click;
             timer = new Timer();
             timer.Interval = 1000;
@@ -138,9 +150,19 @@ namespace Pildi_Vaatamise_Programm
 
             tl.SetColumnSpan(start, 2);
             tl.Controls.Add(start, 2, 5);
+            tl.SetColumnSpan(btn, 2);
+            tl.Controls.Add(btn, 2, 5);
             Controls.Add(tl);
 
 
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.Color = tl.ForeColor;
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                tl.BackColor = MyDialog.Color;
         }
 
         private void Timer_Tick(object sender, EventArgs e)

@@ -10,52 +10,12 @@ namespace Pildi_Vaatamise_Programm
     {
         public class User
         {
-            public int ID { get; set; }
-            public string Nimi;
-            public string Sugu;
-            public string Email;
-            public int vanus;
-            public string password;
-
-            public string Fname
-            {
-                get { return Nimi; }
-                set { Nimi = value; }
-            }
-
-            public string Lname
-            {
-                get { return Sugu; }
-                set { Sugu = value; }
-            }
-
-            public string Username
-            {
-                get { return Email; }
-                set { Email = value; }
-            }
-            public int vozrast
-            {
-                get { return vanus; }
-                set { vanus = value; }
-            }
-
-            public string Password
-            {
-                get { return password; }
-                set { password = value; }
-            }
-
-            public User() { }
-
-            public User(string fname, string lname,string username, string vozrast, string password)
-            {
-                this.Nimi = fname;
-                this.Sugu = lname;
-                this.Email = username;
-
-                this.password = password;
-            }
+            public int id { get; set; }
+            public string nimi { get; set; }
+            public string sugu { get; set; }
+            public string email { get; set; }
+            public int vanus { get; set; }
+            public string password { get; set; }
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using K4os.Compression.LZ4.Encoders;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,13 +15,14 @@ namespace Pildi_Vaatamise_Programm
     public partial class Menu : Form
     {
         Button btn1, btn2, btn3,btn4;
-
+        static Label lbl, lbl2;
+        public static string Name;
 
         public Menu()
         {
             this.Size = new Size(400, 400);
             this.BackColor = Color.LightYellow;
-
+            
 
 
             btn1 = new Button()
@@ -58,8 +60,20 @@ namespace Pildi_Vaatamise_Programm
 
 
             };
-
-
+            lbl = new Label()
+            {
+                Text = " ",
+                Location = new Point(200, 20),
+                Size = new Size(100, 50),
+                ForeColor = Color.Black
+            };
+            lbl2 = new Label()
+            {
+                Text = "Tervist ",
+                Location = new Point(165, 20),
+                Size = new Size(100, 50),
+                ForeColor = Color.Black
+            };
 
             btn1.Click += Btn1_Click;
             btn2.Click += Btn2_Click;
@@ -69,12 +83,15 @@ namespace Pildi_Vaatamise_Programm
             this.Controls.Add(btn2);
             this.Controls.Add(btn3);
             this.Controls.Add(btn4);
+            this.Controls.Add(lbl);
+            this.Controls.Add(lbl2);
 
 
 
 
         }
-
+        public int I;
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane.TTHK\source\repos\ArtemKabilov2_TARpv20\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database1.mdf;Integrated Security=True";
         private void Btn4_Click1(object sender, EventArgs e)
         {
             login mang3 = new login();
@@ -98,6 +115,10 @@ namespace Pildi_Vaatamise_Programm
         {
             Form1 form1 = new Form1();
             form1.ShowDialog();
+        }
+        public static void EnterName(string name)
+        {
+            lbl.Text = name;
         }
     }
 }

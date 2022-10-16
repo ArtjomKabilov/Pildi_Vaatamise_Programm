@@ -24,8 +24,8 @@ namespace Pildi_Vaatamise_Programm
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\artem\Source\Repos\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database2.mdf;Integrated Security=True";
         List<string> icons = new List<string>()
         {
-            "a", "a", "B", "B", "j", "j", "K", "K",
-            "d", "d", "X", "X", "W", "W","g", "g","1", "1",
+            "a", "a", "B", "B", "j", "j", "K", "K","6", "6","3", "3", "2","2", "4","4", "5","5", "7","7", "8","8", "9","9",
+            "d", "d", "X", "X", "W", "W","g", "g","1", "1","1", "1","1",
         };
         public mang2()
         {

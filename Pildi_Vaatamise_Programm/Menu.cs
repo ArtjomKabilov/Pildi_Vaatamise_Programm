@@ -14,7 +14,7 @@ namespace Pildi_Vaatamise_Programm
 {
     public partial class Menu : Form
     {
-        Button btn1, btn2, btn3,btn4;
+        Button btn1, btn2, btn3,btn4, btn5;
         static Label lbl, lbl2;
         public static string Name;
 
@@ -60,6 +60,15 @@ namespace Pildi_Vaatamise_Programm
 
 
             };
+            btn5 = new Button()
+            {
+                Text = "Table",
+                Location = new Point(40, 20),
+                Size = new Size(100, 50),
+                BackColor = Color.LightGreen
+
+
+            };
             lbl = new Label()
             {
                 Text = " ",
@@ -79,10 +88,12 @@ namespace Pildi_Vaatamise_Programm
             btn2.Click += Btn2_Click;
             btn3.Click += Btn3_Click;
             btn4.Click += Btn4_Click1;
+            btn5.Click += Btn5_Click;
             this.Controls.Add(btn1);
             this.Controls.Add(btn2);
             this.Controls.Add(btn3);
-            this.Controls.Add(btn4);
+            this.Controls.Add(btn4); 
+            this.Controls.Add(btn5);
             this.Controls.Add(lbl);
             this.Controls.Add(lbl2);
 
@@ -90,6 +101,14 @@ namespace Pildi_Vaatamise_Programm
 
 
         }
+
+        private void Btn5_Click(object sender, EventArgs e)
+        {
+            tablitsa tb = new tablitsa();
+            tb.ShowDialog();
+            this.Close();
+        }
+
         public int I;
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane.TTHK\source\repos\ArtemKabilov2_TARpv20\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database1.mdf;Integrated Security=True";
         private void Btn4_Click1(object sender, EventArgs e)

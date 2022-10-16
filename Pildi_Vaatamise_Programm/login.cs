@@ -22,7 +22,8 @@ namespace Pildi_Vaatamise_Programm
         Label lbl1, lbl2,lbl3,lbl4;
         Button btn,btn2,btn3,btn4,btn5;
         public int I;
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane.TTHK\source\repos\ArtemKabilov2_TARpv20\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database1.mdf;Integrated Security=True";
+        public static int Id;
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\artem\Source\Repos\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database2.mdf;Integrated Security=True";
 
         public login()
         {
@@ -194,6 +195,7 @@ namespace Pildi_Vaatamise_Programm
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from people where nimi = '" + tb1.Text + "'and password= '" + tb2.Text + "'";
+            
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -204,7 +206,7 @@ namespace Pildi_Vaatamise_Programm
             }
             else
             {
-
+                Id = Convert.ToInt32(dt.Rows[0][0]);
                 this.Hide();
                 Menu m = new Menu();
                 Pildi_Vaatamise_Programm.Menu.EnterName(tb1.Text);

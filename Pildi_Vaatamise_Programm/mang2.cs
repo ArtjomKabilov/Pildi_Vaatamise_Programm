@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using MongoDB.Driver.Core.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,10 +21,11 @@ namespace Pildi_Vaatamise_Programm
         Label secondClicked = null;
         Timer taimer;
         Button btn1, btn2;
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\artem\Source\Repos\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database2.mdf;Integrated Security=True";
         List<string> icons = new List<string>()
         {
-            "a", "a", "B", "B", "j", "j", "K", "K","g","g",";",";",
-            "d", "d", "X", "X", "W", "W", ".", ".","l","l","Q","Q"
+            "a", "a", "B", "B", "j", "j", "K", "K",
+            "d", "d", "X", "X", "W", "W","g", "g","1", "1",
         };
         public mang2()
         {
@@ -204,7 +207,15 @@ namespace Pildi_Vaatamise_Programm
                         return;
                 }
             }
-
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"Insert into mang(nimetus, point, kasutajaID) VALUES('kaks pilti',1,{login.Id})";
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            connection.Close();
             MessageBox.Show("Sa sobitasid kõik ikoonid!", "Palju õnne");
             Close();
         

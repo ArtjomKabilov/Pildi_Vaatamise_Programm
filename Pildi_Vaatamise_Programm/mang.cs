@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using MongoDB.Driver.Core.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +29,7 @@ namespace Pildi_Vaatamise_Programm
         Timer timer;
         Label lb;
         Button start, btn;
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\artem\Source\Repos\Pildi_Vaatamise_Programm\Pildi_Vaatamise_Programm\Database2.mdf;Integrated Security=True";
 
         public mang()
         {
@@ -177,6 +180,15 @@ namespace Pildi_Vaatamise_Programm
                 MessageBox.Show("Teil on kõik vastused õiged!",
                                  "Palju õnne!");
                 start.Enabled = true;
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $"Insert into mang(nimetus, point, kasutajaID) VALUES('matemaatika',1,{login.Id})";
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                connection.Close();
             }
             else if (aega_jäänud > 0)
             {
